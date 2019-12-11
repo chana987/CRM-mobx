@@ -4,10 +4,12 @@ import Moment from 'react-moment';
 class Client extends Component {
     render() {
         let c = this.props.c
+        let name = c.name.split(' ')
+
         return (
             <tr>
-                <td>{c.firstName}</td>
-                <td>{c.lastName}</td>
+                <td>{name[0]}</td>
+                <td>{name[1]}</td>
                 <td>{c.country}</td>
                 <td><Moment format="YYYY/MM/DD">
                     {c.firstContact}

@@ -1,17 +1,24 @@
 import React, { Component } from 'react';
-import { observer, inject } from 'mobx-react'
+import { observer, inject } from 'mobx-react';
+import '../../App.css'
 
-@inject("CRMStore")
+@inject("CRMStore", "GeneralStore")
 @observer
 class ClientInput extends Component {
+    inputHandler = (e) => {
+        this.props.GeneralStore.handleInput(e.target.name, e.target.value)
+    }
+
     render() {
         return (
-            <div>
+            <div className="client-input">
                 <label htmlFor="clientInput">Client</label>
-                <input type="text" name="clientInput" id="clientInput" list="clientList"/>
+                <input type="text" name="clientInput" id="clientInput" list="clientList" placeholder="Client name"
+                        onChange={this.inputHandler}
+                        value={this.props.GeneralStore.ClientInput}/>
                 <datalist id="clientList">
                     {this.props.CRMStore.clients.map(c => 
-                        <option key={c._id}>{c.firstName} {c.lastName}</option>)}
+                        <option key={c._id}>{c.name}</option>)}
                 </datalist>
             </div>
         );

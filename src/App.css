@@ -1,3 +1,10 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  color: rgb(18, 9, 68);
+}
+
 .App {
   /* text-align: center; */
 }
@@ -13,4 +20,58 @@ tr {
 th, td {
   padding: 0 15px;
   text-align: left;
+}
+
+button,
+input {
+  padding: 10px;
+  border-radius: 3px;
+  border: 1px solid rgb(18, 9, 68);
+  background: bisque;
+}
+
+h3 {
+  padding: 20px;
+}
+
+.new-form {
+  display: grid;
+  grid-template-columns: 100px 200px;
+  grid-gap: 20px;
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+.update-form {
+  display: grid;
+  grid-template-columns: 180px 200px 80px;
+  grid-gap: 20px;
+  width: 100%;
+  padding-bottom: 20px;;
+  border-bottom: 1px solid rgb(18, 9, 68);
+}
+
+.client-input {
+  display: grid;
+  grid-template-columns: 70px 200px;
+  grid-gap: 20px;
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+.actions {
+  padding: 30px;
+  background: bisque;
+}
+
+.links {
+  height: 35px;
+}
+
+.link {
+  background: rgb(18, 9, 68);
+  color: bisque;
+  text-decoration: none;
+  padding: 10px;
+  margin: 2px;
 }

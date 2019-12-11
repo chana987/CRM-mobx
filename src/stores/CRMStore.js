@@ -12,8 +12,7 @@ export class CRMStore {
     @action getClients = () => {
         data.forEach(c => this.clients.push({
             _id: c._id,
-            firstName: c.name.split(' ')[0],
-            lastName: c.name.split(' ')[1],
+            name: c.name,
             email: c.email,
             firstContact: c.firstContact,
             emailType: c.emailType,
@@ -24,8 +23,14 @@ export class CRMStore {
     }
 
     @action addClient = (client) => {
-        this.clients.push(client)
-        console.log(`added ${client.firdtName} to clients`)
+        let newClient = { 
+            ...client, 
+            id: this.clients.length,
+            sold: false,
+            firstContact: new Date()
+        }
+        this.clients.push(newClient)
+        console.log(`added ${newClient.firstName} ${newClient.lastName} to clients`)
     }
 
     @action updateClient = (name, field, newValue) => {

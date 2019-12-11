@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import AddClient from './AddClient';
 import ClientInput from './ClientInput';
-import Update from './Update';
+import Update from './UpdateClient';
+import '../../App.css'
 
 class Actions extends Component {
     render() {
         return (
-            <div>
+            <div className="actions">
                 <h3>Update</h3>
                 <ClientInput />
                 <Update />
