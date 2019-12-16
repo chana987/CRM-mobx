@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
+import { Link } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
 import '../../App.css'
@@ -17,9 +18,11 @@ class AddClient extends Component {
             firstName: General.firstName,
             lastName: General.lastName,
             country: General.country,
-            newOwner: General.newOwner,
+            owner: General.newOwner,
             emailType: null,
-            email: ''
+            email: '',
+            sold: false,
+            firstContact: new Date()
         }
 
         if (General.firstName === '' || General.lastName === '' || General.country === '' || General.newOwner === '') {
@@ -27,6 +30,10 @@ class AddClient extends Component {
             return
         }
         this.props.CRMStore.addClient(newClient)
+        General.firstName = ''
+        General.lastName = ''
+        General.country = ''
+        General.newOwner = ''
     }
 
     render() {
@@ -49,11 +56,15 @@ class AddClient extends Component {
                         value={this.props.GeneralStore.country} />
 
                     <label htmlFor="newOwner">Owner: </label>
-                    <input type="text" name="newOwner" id="newOwner"
+                    <input type="text" name="newOwner" id="newOwner" list="newOwnerList"
                         onChange={this.inputHandler}
                         value={this.props.GeneralStore.newOwner} />
+                    <datalist id="newOwnerList">
+                        {this.props.CRMStore.owners.map((o, i) =>
+                            <option key={i}>{o}</option>)}
+                    </datalist>
                 </div>
-                <button onClick={this.addClient}>Add New Client</button>
+                <Link to="/clients"><button onClick={this.addClient}>Add New Client</button></Link>
             </div>
         );
     }

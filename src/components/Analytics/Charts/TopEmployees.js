@@ -6,31 +6,33 @@ import { observer, inject } from 'mobx-react'
 
 @inject("CRMStore")
 @observer
-class SalesByCountry extends PureComponent {
+class TopEmployees extends PureComponent {
+
     static jsfiddleUrl = 'https://jsfiddle.net/alidingling/30763kr7/';
 
     render() {
         return (
             <div>
-                <h3>Sales by Country</h3>
-                {/* <ResponsiveContainer width='100%' > */}
+                <h3>Top Employees</h3>
+             {/* <ResponsiveContainer width='100%'> */}
                 <BarChart
+                    layout="vertical"
                     width={500}
                     height={300}
-                    data={this.props.CRMStore.salesByCountry}
+                    data={this.props.CRMStore.topEmployees}
                     margin={{
                         top: 5, right: 30, left: 20, bottom: 5,
                     }}
                 >
-                    <XAxis dataKey="country" />
-                    <YAxis />
+                    <XAxis type="number" />
+                    <YAxis type="category" dataKey="name" />
                     <Tooltip />
                     <Legend />
-                    <Bar dataKey="numClients" name="Number of clients" fill="#FFBB28" />
+                    <Bar dataKey="numClients" name="Number of clients" fill="#0088FE" />
                 </BarChart>
-                {/* </ResponsiveContainer> */}
+             {/* </ResponsiveContainer> */}
             </div>
         );
     }
 }
-export default SalesByCountry
+export default TopEmployees

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Client from './Client';
 import Header from './Header';
-import Popup from './Popup';
 import { observer, inject } from 'mobx-react';
+import Popup from './Popup';
 import '../../App.css';
 
 @inject("CRMStore")
@@ -16,11 +16,11 @@ class Clients extends Component {
                         <Header />
                     </thead>
                     <tbody>
-                        {this.props.CRMStore.clients.map(c => 
-                            <Client c={c} key={c._id} />)}
+                        {this.props.CRMStore.clients.map(c =>
+                            <Client c={c} key={c.id} />)}
                     </tbody>
                 </table>
-                <Popup />
+                {this.props.CRMStore.popupOpen === true ? <Popup /> : null}
             </div>
         );
     }

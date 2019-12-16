@@ -1,34 +1,29 @@
 import { observable, action, computed } from 'mobx';
-import axios from 'axios';
-import { GeneralStore } from './GeneralStore';
+import { CRMStore } from './CRMStore';
 
-export class CRMStore {
-    @observable clients = []
-    @observable popupOpen = false
-    @observable openClient = null
-
+export class AnalyticsStore {
     @computed get newClients() {
         let date = new Date()
         let month = date.getMonth()
         let newClients = {
             month: date.toLocaleString('default', { month: 'long' }),
-            numClients: this.clients.filter(c => new Date(c.firstContact).getMonth() === month).length
+            numClients: CRMStore.clients.filter(c => new Date(c.firstContact).getMonth() === month).length
         }
         return newClients
     }
 
     @computed get emailsSent() {
-        let emailsSent = this.clients.filter(c => c.emailType !== null).length
+        let emailsSent = CRMStore.clients.filter(c => c.emailType !== null).length
         return emailsSent
     }
 
     @computed get outstandingClients() {
-        let outstandingClients = this.clients.filter(c => c.sold === 0).length
+        let outstandingClients = CRMStore.clients.filter(c => c.sold === 0).length
         return outstandingClients
     }
 
     @computed get countries() {
-        let countries = [...new Set(this.clients.map(c => c.country))]
+        let countries = [...new Set(CRMStore.clients.map(c => c.country))]
         return countries
     }
 
@@ -48,12 +43,12 @@ export class CRMStore {
     }
 
     @computed get owners() {
-        let owners = [...new Set(this.clients.map(c => c.owner))]
+        let owners = [...new Set(CRMStore.clients.map(c => c.owner))]
         return owners
     }
 
     @computed get soldClients() {
-        let clients = this.clients.filter(c => c.sold === 1)
+        let clients = CRMStore.clients.filter(c => c.sold === 1)
         return clients
     }
 
@@ -78,36 +73,6 @@ export class CRMStore {
             { name: this.soldClientsByOwner[sorted[2]], numClients: sorted[2] }
         ]
         return topEmployees
-    }
-
-    @action getClients = async () => {
-        let response = await axios.get('http://localhost:4000/clients')
-        response.data[0] ? this.clients = [...response.data[0]] : console.log('error')
-    }
-
-    @action addClient = async (newClient) => {
-        let client = { ...newClient }
-        let attempt = await axios.post('http://localhost:4000/client', client)
-        console.log(attempt)
-        this.getClients()
-    }
-
-    @action updateClient = async (updateInfo) => {
-        let attempt = await axios.put('http://localhost:4000/client', updateInfo)
-        console.log(attempt)
-        this.getClients()
-    }
-
-    @action openPopup = (client) => {
-        if (this.popupOpen === false) {
-            this.popupOpen = true
-            this.openClient = client
-        }
-    }
-
-    @action closePopup = () => {
-        this.popupOpen = false
-        this.openClient = null
     }
 
 }

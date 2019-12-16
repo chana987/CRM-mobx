@@ -12,16 +12,23 @@ class Update extends Component {
     }
 
     updateClient = (event) => {
-        event.persist()
-        let field = event.target.className
         let GeneralStore = this.props.GeneralStore
 
-        if (GeneralStore[field] === '' || GeneralStore.clientInput === '') {
+        if (GeneralStore[event.target.className] === '' || GeneralStore.clientInput === '') {
             toast.warn('Incomplete input')
             return
         }
-
-        this.props.CRMStore.updateClient(GeneralStore.clientInput, field, GeneralStore[field])
+        let client = this.props.CRMStore.clients.find(c => `${c.firstName} ${c.lastName}` === GeneralStore.clientInput)
+        let updateInfo = [
+            {
+                id: client.id,
+                field: event.target.className,
+                newValue: GeneralStore[event.target.className]
+            }
+        ]
+        this.props.CRMStore.updateClient(updateInfo)
+        GeneralStore[event.target.className] = ''
+        GeneralStore.clientInput = ''
     }
 
     render() {
@@ -33,7 +40,7 @@ class Update extends Component {
                     value={this.props.GeneralStore.owner} />
                 <datalist id="ownerList">
                     {this.props.CRMStore.owners.map((o, i) =>
-                        <option key={i}>{o}</option>)}
+                        <option key={i} >{o}</option>)}
                 </datalist>
                 <button className="owner" onClick={this.updateClient}>Transfer</button>
 

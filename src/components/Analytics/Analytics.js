@@ -5,7 +5,7 @@ import Charts from './charts/Charts';
 class Analytics extends Component {
     render() {
         return (
-            <div>
+            <div className="analytics">
                 <Badges />
                 <Charts />
             </div>

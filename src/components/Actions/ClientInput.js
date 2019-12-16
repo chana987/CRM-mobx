@@ -15,10 +15,10 @@ class ClientInput extends Component {
                 <label htmlFor="clientInput">Client</label>
                 <input type="text" name="clientInput" id="clientInput" list="clientList" placeholder="Client name"
                         onChange={this.inputHandler}
-                        value={this.props.GeneralStore.ClientInput}/>
+                        value={this.props.GeneralStore.clientInput}/>
                 <datalist id="clientList">
                     {this.props.CRMStore.clients.map(c => 
-                        <option key={c._id}>{c.name}</option>)}
+                        <option key={c.id}>{c.firstName} {c.lastName}</option>)}
                 </datalist>
             </div>
         );

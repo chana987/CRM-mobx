@@ -2,32 +2,52 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  color: rgb(18, 9, 68);
+  color: rgb(54, 27, 14);
 }
 
 .App {
-  /* text-align: center; */
+  background: rgb(130, 194, 46);
+  padding: 5px;
 }
 
 table {
   line-height: 35px;
+  background: rgb(130, 194, 46);
+  width: 98vw;
+  margin: 0 auto;
+  padding: 15px;
 }
 
 tr {
-  background: bisque;
+  background: rgb(252, 246, 239);
 }
 
-th, td {
+td {
   padding: 0 15px;
   text-align: left;
 }
 
-button,
-input {
+th {
+  padding: 0 15px;
+  text-align: left;
+  line-height: 45px;
+}
+
+button {
   padding: 10px;
-  border-radius: 3px;
-  border: 1px solid rgb(18, 9, 68);
-  background: bisque;
+  border: 2px solid rgb(130, 194, 46);
+  background: rgb(252, 246, 239);
+  margin: 5px;
+}
+
+input,
+input:focus {
+  padding: 2px;
+  border: none;
+  border-bottom: 2px solid rgb(130, 194, 46);
+  background: rgb(252, 246, 239);
+  margin: 5px;
+  outline: none;
 }
 
 h3 {
@@ -44,11 +64,11 @@ h3 {
 
 .update-form {
   display: grid;
-  grid-template-columns: 180px 200px 80px;
+  grid-template-columns: 180px 200px 100px;
   grid-gap: 20px;
   width: 100%;
   padding-bottom: 20px;;
-  border-bottom: 1px solid rgb(18, 9, 68);
+  border-bottom: 1px solid rgb(130, 194, 46);
 }
 
 .client-input {
@@ -61,7 +81,7 @@ h3 {
 
 .actions {
   padding: 30px;
-  background: bisque;
+  background: rgb(252, 246, 239);
 }
 
 .links {
@@ -69,9 +89,87 @@ h3 {
 }
 
 .link {
-  background: rgb(18, 9, 68);
-  color: bisque;
+  background: rgb(130, 194, 46);
+  color: rgb(252, 246, 239);
   text-decoration: none;
-  padding: 10px;
+  padding-top: 50px;
+  padding-left: 30px;
   margin: 2px;
+  font-size: x-large;
+}
+
+.badges {
+  display: flex;
+  justify-content: space-around;
+}
+
+.analytics {
+  background: rgb(252, 246, 239);
+}
+
+.badge {
+  background: rgb(252, 246, 239);
+  display: grid;
+  grid-template-areas: 'i n' 'i e';
+  grid-gap: 8px;
+  padding: 10px;
+}
+
+.icon {
+  grid-area: i;
+  font-size: 3rem;
+  padding: 5px;
+}
+
+.num {
+  grid-area: n;
+}
+
+.explanation {
+  grid-area: e;
+}
+
+.popup {
+  position: fixed;
+  top: 30%;
+  left: 30%;
+  background: rgb(130, 194, 46);
+  border: 3px solid rgb(130, 194, 46);
+  padding: 10px;
+}
+
+.popup input {
+  background: rgb(130, 194, 46);
+  border-bottom: 2px solid rgb(54, 27, 14);
+}
+
+.popup-field {
+  display: grid;
+  grid-template-columns: 120px 200px;
+}
+
+label {
+  font-weight: 600;
+  padding: 10px;
+}
+
+button,
+button:focus {
+  background: rgb(130, 194, 46);
+  font-weight: 600;
+  outline: none;
+  border-radius: 5px;
+}
+
+.popup-button {
+  float: right;
+  background: rgb(54, 27, 14);
+  color: rgb(130, 194, 46);
+  border-radius: 5px;
+}
+
+.charts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  align-items: center;
 }
